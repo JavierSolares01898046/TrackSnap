@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">TrackSnap</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="homescreen_title_txt">TrackSnap</string>
+    <string name="login_txt">LOG IN</string>
+    <string name="signup_txt">SIGN UP</string>
+    <string name="genres_txt">FAVORITE GENRES (1-3):</string>
+    <string name="actiongenre_txt">Action</string>
+    <string name="adventuregenre_txt">Adventure</string>
+    <string name="animationgenre_txt">Animation</string>
+    <string name="biographicalgenre_txt">Biographical</string>
+    <string name="comedygenre_txt">Comedy</string>
+    <string name="crimegenre_txt">Crime</string>
+    <string name="documentarygenre_txt">Documentary</string>
+    <string name="dramagenre_txt">Drama</string>
+    <string name="familygenre_txt">Family</string>
+    <string name="fantasygenre_txt">Fantasy</string>
+    <string name="historicalgenre_txt">Historical</string>
+    <string name="horrorgenre_txt">Horror</string>
+    <string name="musicalgenre_txt">Musical</string>
+    <string name="mysterygenre_txt">Mystery</string>
+    <string name="romancegenre_txt">Romance</string>
+    <string name="sciencefictiongenre_txt">Science Fiction</string>
+    <string name="sportsgenre_txt">Sports</string>
+    <string name="superherogenre_txt">Superhero</string>
+    <string name="thrillergenre_txt">Thriller</string>
+    <string name="wargenre_txt">War</string>
+    <string name="westerngenre_txt">Western</string>
+    <string name="movierating_txt">PREFERRED RATING (1-3):</string>
+    <string name="generalrating_txt">G</string>
+    <string name="pgrating_txt">PG</string>
+    <string name="pg13rating_txt">PG-13</string>
+    <string name="rrating_txt">R</string>
+    <string name="nc17rating_txt">NC-17</string>
+    <string name="movieduration_txt">PREFERRED DURATION (1-3)</string>
+    <string name="duration1_txt">Sub 1hr</string>
+    <string name="duration2_txt">1-1:29</string>
+    <string name="duration3_txt">1:30-1:59</string>
+    <string name="duration4_txt">2-2:29</string>
+    <string name="duration5_txt">2:30-2:59</string>
+    <string name="duration6_txt">3hr+</string>
+    <string name="bio_txt">BIO (OPTIONAL):</string>
+    <string name="bio_edttxt">Tell others about yourself ...</string>
+    <string name="create_txt">CREATE</string>
+
+
+</resources>

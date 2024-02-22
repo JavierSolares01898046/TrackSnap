@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "375603699814",
+    "project_id": "tracksnap-31e66",
+    "storage_bucket": "tracksnap-31e66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375603699814:android:b842d4fa0d278cac01cda7",
+        "android_client_info": {
+          "package_name": "com.example.tracksnap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMocsGPFnWndg9XaUfDKZ2_gRayh_xvp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

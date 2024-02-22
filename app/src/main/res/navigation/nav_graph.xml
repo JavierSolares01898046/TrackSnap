@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.tracksnap.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.tracksnap.SignupFragment"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup" >
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.tracksnap.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.tracksnap.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="username"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendsFragment"
+        android:name="com.example.tracksnap.FriendsFragment"
+        android:label="fragment_friends"
+        tools:layout="@layout/fragment_friends" />
+    <fragment
+        android:id="@+id/moviesWatchedFragment"
+        android:name="com.example.tracksnap.MoviesWatchedFragment"
+        android:label="fragment_movies_watched"
+        tools:layout="@layout/fragment_movies_watched" />
+    <fragment
+        android:id="@+id/reviewsFragment"
+        android:name="com.example.tracksnap.ReviewsFragment"
+        android:label="fragment_reviews"
+        tools:layout="@layout/fragment_reviews" />
+    <fragment
+        android:id="@+id/watchlistFragment"
+        android:name="com.example.tracksnap.WatchlistFragment"
+        android:label="fragment_watchlist"
+        tools:layout="@layout/fragment_watchlist" />
+</navigation>
