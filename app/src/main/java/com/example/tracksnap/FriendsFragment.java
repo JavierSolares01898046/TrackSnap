@@ -15,7 +15,6 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        // Javier
         return inflater.inflate(R.layout.fragment_friends, container, false);
     }
 }
