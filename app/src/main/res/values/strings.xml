@@ -51,6 +51,8 @@
     <string name="searchbar_txt">Search...</string>
     <string name="friendslist_txt">Friends List</string>
     <string name="username_txt">Username</string>
+    <string name="about">Our mission is to address the common challenges of forgetting to watch movies and shows by providing a user friendly app, helping users track and share their media experiences. We want to offer a personalized profile and foster connections among users facilitating a comprehensive movie database. TrackSnap will provide methods of discovering new media within the app through tailored interests.
+</string>
 
 
 </resources>
