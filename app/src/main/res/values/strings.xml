@@ -43,6 +43,14 @@
     <string name="bio_txt">BIO (OPTIONAL):</string>
     <string name="bio_edttxt">Tell others about yourself ...</string>
     <string name="create_txt">CREATE</string>
+    <string name="movies_watched_txt">MOVIES WATCHED</string>
+    <string name="watchlist_txt">WATCHLIST</string>
+    <string name="reviews_txt">REVIEWS</string>
+    <string name="friends_txt">FRIENDS</string>
+    <string name="profile_txt">PROFILE</string>
+    <string name="searchbar_txt">Search...</string>
+    <string name="friendslist_txt">Friends List</string>
+    <string name="username_txt">Username</string>
 
 
 </resources>
