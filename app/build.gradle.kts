@@ -35,6 +35,9 @@ android {
 }
 
 dependencies {
+    // Bumptech for images
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+
     implementation("com.google.firebase:firebase-database:20.3.0")
     val nav_version = "2.7.6"
 

@@ -186,5 +186,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/reviews_btn"/>
 
+    <Button
+        android:id="@+id/home_movie_btn"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:text="MOVIE HOME"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:background="@drawable/golden_border"
+        android:layout_margin="20dp"
+        app:backgroundTint="@null"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/friends_btn"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
