@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_profileFragment_to_friendsFragment"
             app:destination="@id/friendsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_movieHomeFragment"
+            app:destination="@id/movieHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/friendsFragment"
@@ -75,4 +78,19 @@
         android:name="com.example.tracksnap.WatchlistFragment"
         android:label="fragment_watchlist"
         tools:layout="@layout/fragment_watchlist" />
+    <fragment
+        android:id="@+id/movieHomeFragment"
+        android:name="com.example.tracksnap.MovieHomeFragment"
+        android:label="fragment_movie_home"
+        tools:layout="@layout/fragment_movie_home" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.tracksnap.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.tracksnap.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
 </navigation>

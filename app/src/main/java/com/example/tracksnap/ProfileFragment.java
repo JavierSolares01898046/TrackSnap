@@ -35,6 +35,8 @@ public class ProfileFragment extends Fragment {
     private Button watchlistBtn;
     private Button reviewsBtn;
     private Button friendsBtn;
+
+    private Button homemovie_btn;
     private String username = "";
     DatabaseReference databaseReference;
 
@@ -49,6 +51,7 @@ public class ProfileFragment extends Fragment {
         watchlistBtn = view.findViewById(R.id.watchlist_btn);
         reviewsBtn = view.findViewById(R.id.reviews_btn);
         friendsBtn = view.findViewById(R.id.friends_btn);
+        homemovie_btn = view.findViewById(R.id.home_movie_btn);
 
         // Obtaining the user's username
         username = ProfileFragmentArgs.fromBundle(requireArguments()).getUsername();
@@ -102,6 +105,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_friendsFragment);
+            }
+        });
+
+        homemovie_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_movieHomeFragment);
             }
         });
 
