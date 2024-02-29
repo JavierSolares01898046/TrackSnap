@@ -52,6 +52,8 @@
     <string name="friendslist_txt">Friends List</string>
     <string name="username_txt">Username</string>
     <string name="pendinglist_txt">Pending Request</string>
+    <string name="rememberCheckBox">Remember Me</string>
+    <string name="reviewTitle">Reviews</string>
 
 
 </resources>
