@@ -1,5 +1,7 @@
 package com.example.tracksnap;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +28,10 @@ import java.util.Objects;
 public class LoginFragment extends Fragment {
     private EditText loginUsername, loginPassword;
     private Button loginButton;
+    private CheckBox rememberMeButton;
+    private SharedPreferences sharedPreferences;
+
+
     private View view;
 
     @Override
@@ -35,6 +42,17 @@ public class LoginFragment extends Fragment {
         loginUsername = view.findViewById(R.id.login_username_edit);
         loginPassword = view.findViewById(R.id.login_password_edit);
         loginButton = view.findViewById(R.id.login_complete_btn);
+        rememberMeButton = view.findViewById(R.id.rememberMeCheck);
+
+        // Initialize SharedPreferences
+        sharedPreferences = requireActivity().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+
+        // Check if Remember Me was previously checked and fill the username and password fields
+        if (sharedPreferences.getBoolean("rememberMe", false)) {
+            loginUsername.setText(sharedPreferences.getString("username", ""));
+            loginPassword.setText(sharedPreferences.getString("password", ""));
+            rememberMeButton.setChecked(true);
+        }
 
         // Login Button
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +61,22 @@ public class LoginFragment extends Fragment {
                 if (!validateUsername() || !validatePassword()) {
 
                 } else {
+                    // Check if Remember Me is checked and save the credentials
+                    if (rememberMeButton.isChecked()) {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("username", loginUsername.getText().toString().trim());
+                        editor.putString("password", loginPassword.getText().toString().trim());
+                        editor.putBoolean("rememberMe", true);
+                        editor.apply();
+                    } else {
+                        // If Remember Me is not checked, clear the saved credentials
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove("username");
+                        editor.remove("password");
+                        editor.remove("rememberMe");
+                        editor.apply();
+                    }
+
                     checkUser();
                 }
             }
