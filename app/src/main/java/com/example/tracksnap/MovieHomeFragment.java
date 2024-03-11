@@ -27,13 +27,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public class MovieHomeFragment extends Fragment {
 
-    private static String JSON_URL = "https://run.mocky.io/v3/4a324606-1941-441f-952a-503b3bd6b1fe";
+    private static final String API_URL = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
+    // Replace this token with your authorization token
+    private static final String AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmI0MTBjOWY3YzY1MjQzNzc2ODQwMWYxZTM5N2FhMCIsInN1YiI6IjY1Y2ZhN2U4NjBjNzUxMDE0NzY4YmRiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2tABWOxcabMK_KtLyW53vH-iIKJ5-prNoof3towpcfs";
 
-    List<MovieModelClass> movieList;
-    RecyclerView recyclerView;
+    private List<MovieModelClass> movieList;
+    private RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,81 +56,118 @@ public class MovieHomeFragment extends Fragment {
         return view;
     }
 
-    public class GetData extends AsyncTask<String, String, String> {
-
+    public class GetData extends AsyncTask<Void, Void, String> {
 
         @Override
-        protected String doInBackground(String... strings) {
+        protected String doInBackground(Void... voids) {
+            OkHttpClient client = new OkHttpClient();
 
-            String current = "";
-            try{
-                URL url;
-                HttpURLConnection urlConnection = null;
+            Request request = new Request.Builder()
+                    .url(API_URL)
+                    .get()
+                    .addHeader("accept", "application/json")
+                    .addHeader("Authorization", AUTH_TOKEN)
+                    .build();
 
-                try{
-                    url = new URL(JSON_URL);
-                    urlConnection = (HttpURLConnection) url.openConnection();
-
-                    InputStream is = urlConnection.getInputStream();
-                    InputStreamReader isr = new InputStreamReader(is);
-
-                    int data = isr.read();
-
-                    while(data != -1){
-                        current += (char) data;
-                        data = isr.read();
-                    }
-                    return current;
-
-                } catch (MalformedURLException e) {
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }finally{
-                    if(urlConnection != null){
-                        urlConnection.disconnect();
-                    }
+            try {
+                Response response = client.newCall(request).execute();
+                if (response.isSuccessful()) {
+                    return response.body().string();
                 }
-            } catch (Exception e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            return current;
-
+            return null;
         }
 
         @Override
         protected void onPostExecute(String s) {
+            super.onPostExecute(s);
 
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                JSONArray jsonArray = jsonObject.getJSONArray("moviz");
+            if (s != null) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("results");
 
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject movieObject = jsonArray.getJSONObject(i);
 
-                    String title = jsonObject1.getString("title");
-                    String overview = jsonObject1.getString("overview");
-                    String duration = jsonObject1.getString("duration");
-                    String release = jsonObject1.getString("release");
-                    double vote = jsonObject1.getDouble("vote");
-                    String rating = jsonObject1.getString("rating");
-                    String image = jsonObject1.getString("image");
-                    JSONArray genreArray = jsonObject1.getJSONArray("genre");
-                    List<String> genreList = new ArrayList<>();
-                    for (int j = 0; j < genreArray.length(); j++) {
-                        genreList.add(genreArray.getString(j));
+                        MovieModelClass model = new MovieModelClass();
+                        model.setId(String.valueOf(movieObject.getInt("id")));
+                        model.setTitle(movieObject.getString("title"));
+                        model.setOverview(movieObject.getString("overview"));
+                        model.setReleaseDate(movieObject.getString("release_date"));
+                        model.setVoteAverage(movieObject.getDouble("vote_average"));
+                        model.setImage("https://image.tmdb.org/t/p/w500" + movieObject.getString("poster_path"));
+
+                        // Get genre IDs from the JSON object
+                        JSONArray genreIdsArray = movieObject.getJSONArray("genre_ids");
+                        List<String> genreList = new ArrayList<>();
+                        for (int j = 0; j < genreIdsArray.length(); j++) {
+                            int genreId = genreIdsArray.getInt(j);
+                            String genre = getGenreName(genreId);
+                            if (genre != null) {
+                                genreList.add(genre);
+                            }
+                        }
+                        model.setGenreList(genreList);
+
+                        movieList.add(model);
                     }
 
-                    MovieModelClass model = new MovieModelClass(title, overview, genreList, duration, release, vote, rating, image);
-                    movieList.add(model);
+                    PutDataIntoRecyclerView(movieList);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
+        }
 
-            PutDataIntoRecyclerView(movieList);
-
+        // Method to get genre name based on ID
+        private String getGenreName(int genreId) {
+            switch (genreId) {
+                case 28:
+                    return "Action";
+                case 12:
+                    return "Adventure";
+                case 16:
+                    return "Animation";
+                case 35:
+                    return "Comedy";
+                case 80:
+                    return "Crime";
+                case 99:
+                    return "Documentary";
+                case 18:
+                    return "Drama";
+                case 10751:
+                    return "Family";
+                case 14:
+                    return "Fantasy";
+                case 36:
+                    return "History";
+                case 27:
+                    return "Horror";
+                case 10402:
+                    return "Music";
+                case 9648:
+                    return "Mystery";
+                case 10749:
+                    return "Romance";
+                case 878:
+                    return "Science Fiction";
+                case 10770:
+                    return "TV Movie";
+                case 53:
+                    return "Thriller";
+                case 10752:
+                    return "War";
+                case 37:
+                    return "Western";
+                default:
+                    return null; // Return null for unknown genre IDs
+            }
         }
     }
 
