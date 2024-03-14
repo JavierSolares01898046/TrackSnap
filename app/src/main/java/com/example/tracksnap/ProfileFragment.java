@@ -57,7 +57,7 @@ public class ProfileFragment extends Fragment {
         username = ProfileFragmentArgs.fromBundle(requireArguments()).getUsername();
 
         // Displays username at the top of the profile page
-        usernameTxtView.setText("WELCOME " + username);
+        usernameTxtView.setText(username);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username);
 
