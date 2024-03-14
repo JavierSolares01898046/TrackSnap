@@ -2,6 +2,7 @@ package com.example.tracksnap;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,10 +12,13 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +40,16 @@ public class SignupFragment extends Fragment {
     private TextView durationsTxtView;
     FirebaseDatabase database;
     DatabaseReference reference;
+    private MediaPlayer failSound;
+    private MediaPlayer validSound;
+    private ImageView Yellowcircle;
+    private ImageView Purplecircle;
+    private ImageView Redcircle;
+    private ImageView Pinkcircle;
+    private ImageView Greencircle;
+    private ImageView Bluecircle;
+    private ImageView OrangeCircle;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +67,16 @@ public class SignupFragment extends Fragment {
         ratingsTxtView = view.findViewById(R.id.movierating_txtview);
         durationsTxtView = view.findViewById(R.id.movieduration_txtview);
 
+        failSound = MediaPlayer.create(getContext(), R.raw.casualsound);
+        validSound = MediaPlayer.create(getContext(), R.raw.beep);
+
+        Yellowcircle = view.findViewById(R.id.circleYellow);
+        Purplecircle = view.findViewById(R.id.circlePurple);
+        Redcircle = view.findViewById(R.id.circleRed);
+        Pinkcircle = view.findViewById(R.id.circlePink);
+        Greencircle = view.findViewById(R.id.circleGreen);
+        Bluecircle = view.findViewById(R.id.circleBlue);
+        OrangeCircle = view.findViewById(R.id.circleOrange);
 
         // Initializes genre, rating, and duration checkboxes
         for (int i = 0; i < 21; i++) {
@@ -96,6 +120,8 @@ public class SignupFragment extends Fragment {
                 if (username.length() < 3 || username.length() > 15) {
                     signupUsername.setError("Username must be between 3 and 15 characters");
                     signupUsername.requestFocus();
+                    failSound.start();
+
                     return;
                 }
 
@@ -103,6 +129,7 @@ public class SignupFragment extends Fragment {
                 if (!password.matches("^(?=.*[A-Z])(?=.*[0-9\\W]).{6,15}$")) {
                     signupPassword.setError("Password must contain at least one capital letter, one number/special character, and be between 6-15 in length");
                     signupPassword.requestFocus();
+                    failSound.start();
                     return;
                 }
 
@@ -110,6 +137,7 @@ public class SignupFragment extends Fragment {
                 if (bio.length() > 100) {
                     signupBio.setError("Bio must be less than 100 characters");
                     signupBio.requestFocus();
+                    failSound.start();
                     return;
                 }
 
@@ -163,21 +191,25 @@ public class SignupFragment extends Fragment {
                 // Validating the checkboxes
                 if (genresSelected < 1 || genresSelected > 3) {
                     Toast.makeText(requireContext(), "Must select 1 to 3 genres", Toast.LENGTH_SHORT).show();
+                    failSound.start();
                     return;
                 }
 
                 if (ratingsSelected < 1 || ratingsSelected > 3) {
                     Toast.makeText(requireContext(), "Must select 1 to 3 ratings", Toast.LENGTH_SHORT).show();
+                    failSound.start();
                     return;
                 }
 
                 if (durationsSelected < 1 || durationsSelected > 3) {
                     Toast.makeText(requireContext(), "Must select 1 to 3 durations", Toast.LENGTH_SHORT).show();
+                    failSound.start();
                     return;
                 }
 
                 HelperClass helperClass = new HelperClass(email, username, lowercase_username, password, bio, genres, ratings, durations);
                 reference.child(username).setValue(helperClass);
+                validSound.start();
 
                 Toast.makeText(requireContext(), "You account has been created!", Toast.LENGTH_SHORT).show();
 
@@ -185,6 +217,28 @@ public class SignupFragment extends Fragment {
             }
         });
 
+        Animation animation1 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
+        Yellowcircle.startAnimation(animation1);
+
+        // Animation for moving circle2
+        Animation animation2 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
+        Redcircle.startAnimation(animation2);
+
+        Animation animation3 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
+        Pinkcircle.startAnimation(animation3);
+
+        // Animation for moving circle2
+        Animation animation4 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
+        Purplecircle.startAnimation(animation4);
+
+        Animation animation5 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
+        Greencircle.startAnimation(animation5);
+
+        Animation animation6 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
+        Bluecircle.startAnimation(animation6);
+
+        Animation animation7 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
+        OrangeCircle.startAnimation(animation7);
 
 
         return view;
@@ -207,5 +261,19 @@ public class SignupFragment extends Fragment {
             }
         });
         builder.show();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Release MediaPlayer when the activity is destroyed to free up resources
+        if (failSound != null) {
+            failSound.release();
+            failSound = null;
+        }
+        if (validSound != null) {
+            validSound.release();
+            validSound = null;
+        }
     }
 }

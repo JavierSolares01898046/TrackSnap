@@ -1,95 +1,84 @@
+// MovieModelClass.java
 package com.example.tracksnap;
 
 import java.util.List;
 
 public class MovieModelClass {
 
+    private String id;
     private String title;
     private String overview;
-    private List<String> genre;
-    private String duration;
-    private String release;
-    private double vote;
-    private String rating;
+    private String releaseDate;
+    private double voteAverage;
     private String image;
+    private List<String> genreList;
 
-    public MovieModelClass(String title, String overview, List<String> genre, String duration, String release, double vote, String rating, String image) {
+    public MovieModelClass(String id, String title, String overview, String releaseDate, double voteAverage, String image, List<String> genreList) {
+        this.id = id;
         this.title = title;
         this.overview = overview;
-        this.genre = genre;
-        this.duration = duration;
-        this.release = release;
-        this.vote = vote;
-        this.rating = rating;
+        this.releaseDate = releaseDate;
+        this.voteAverage = voteAverage;
         this.image = image;
-
+        this.genreList = genreList;
     }
 
-    public MovieModelClass(){
+    public MovieModelClass() {
+    }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getOverview() {
-        return overview;
-    }
-
-    public List<String> getGenre() {
-        return genre;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public String getRelease() {
-        return release;
-    }
-
-    public double getVote() {
-        return vote;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getOverview() {
+        return overview;
     }
 
     public void setOverview(String overview) {
         this.overview = overview;
     }
 
-    public void setGenre(List<String> genre) {
-        this.genre = genre;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
-    public void setRelease(String release) {
-        this.release = release;
+    public double getVoteAverage() {
+        return voteAverage;
     }
 
-    public void setVote(double vote) {
-        this.vote = vote;
+    public void setVoteAverage(double voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public String getImage() {
+        return image;
     }
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<String> getGenreList() {
+        return genreList;
+    }
+
+    public void setGenreList(List<String> genreList) {
+        this.genreList = genreList;
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,39 +8,14 @@
 
     <TextView
         android:id="@+id/title_txt"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:textSize="16sp"
+        android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/overview_txt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Overview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_txt" />
-
-    <TextView
-        android:id="@+id/genre_txt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Genre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/overview_txt" />
-
-    <TextView
-        android:id="@+id/duration_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Duration"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genre_txt" />
 
     <TextView
         android:id="@+id/release_txt"
@@ -47,23 +23,45 @@
         android:layout_height="wrap_content"
         android:text="Release"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genre_txt" />
+        app:layout_constraintTop_toBottomOf="@id/genre_txt" />
+
+    <TextView
+        android:id="@+id/overview_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Overview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_txt" />
+
+    <TextView
+        android:id="@+id/genre_txt"
+        android:textSize="18sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Genre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/overview_txt" />
 
     <TextView
         android:id="@+id/vote_txt"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Vote"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration_txt" />
+        app:layout_constraintTop_toBottomOf="@id/genre_txt" />
 
     <TextView
         android:id="@+id/rating_txt"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/release_txt" />
+        app:layout_constraintTop_toBottomOf="@id/release_txt" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -72,7 +70,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vote_txt"
+        app:layout_constraintTop_toBottomOf="@id/vote_txt"
+        android:clickable="true"
+        android:focusable="true"
         tools:srcCompat="@tools:sample/avatars"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
