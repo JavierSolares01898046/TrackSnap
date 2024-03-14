@@ -86,7 +86,11 @@
         android:id="@+id/movieHomeFragment"
         android:name="com.example.tracksnap.MovieHomeFragment"
         android:label="fragment_movie_home"
-        tools:layout="@layout/fragment_movie_home" />
+        tools:layout="@layout/fragment_movie_home" >
+        <argument
+            android:name="username2"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.tracksnap.SettingsFragment"

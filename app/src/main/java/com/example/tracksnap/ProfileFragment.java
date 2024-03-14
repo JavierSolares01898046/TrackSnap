@@ -111,7 +111,8 @@ public class ProfileFragment extends Fragment {
         homemovie_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_movieHomeFragment);
+                ProfileFragmentDirections.ActionProfileFragmentToMovieHomeFragment action = ProfileFragmentDirections.actionProfileFragmentToMovieHomeFragment(username);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
