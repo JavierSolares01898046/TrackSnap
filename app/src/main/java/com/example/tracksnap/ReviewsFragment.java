@@ -92,7 +92,7 @@ import java.util.List;
 
 public class ReviewsFragment extends Fragment {
 
-    private RecyclerView recyclerView;
+    private RecyclerView reviewRecyclerView;
     private List<ReviewClass> reviewList;
     private ReviewAdapter reviewAdapter;
 
@@ -101,11 +101,11 @@ public class ReviewsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reviews, container, false);
 
-        recyclerView = view.findViewById(R.id.reviewRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        reviewRecyclerView = view.findViewById(R.id.reviewRecyclerView);
+        reviewRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         reviewList = new ArrayList<>();
         reviewAdapter = new ReviewAdapter(reviewList);
-        recyclerView.setAdapter(reviewAdapter);
+        reviewRecyclerView.setAdapter(reviewAdapter);
 
         fetchReviews();
 
