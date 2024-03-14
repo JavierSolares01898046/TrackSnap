@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 //import android.view.View;
 //import android.view.ViewGroup;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +36,6 @@ import okhttp3.Response;
 
 
 public class MovieHomeFragment extends Fragment {
-
     private static final String API_URL = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
     // Replace this token with your authorization token
     private static final String AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmI0MTBjOWY3YzY1MjQzNzc2ODQwMWYxZTM5N2FhMCIsInN1YiI6IjY1Y2ZhN2U4NjBjNzUxMDE0NzY4YmRiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2tABWOxcabMK_KtLyW53vH-iIKJ5-prNoof3towpcfs";
