@@ -48,7 +48,7 @@
     <string name="reviews_txt">REVIEWS</string>
     <string name="friends_txt">FRIENDS</string>
     <string name="profile_txt">PROFILE</string>
-    <string name="searchbar_txt">Search...</string>
+    <string name="searchbar_txt">Search Users...</string>
     <string name="friendslist_txt">Friends List</string>
     <string name="username_txt">Username</string>
     <string name="rememberCheckBox">Remember me</string>
