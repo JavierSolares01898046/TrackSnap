@@ -5,17 +5,100 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/moviebg"
     android:alpha="0.83"
-    tools:context=".LoginFragment">
+    tools:context=".LoginFragment"
+    android:background="#000000">
 
+
+    <ImageView
+        android:id="@+id/circleYellow"
+        android:layout_width="150dp"
+        android:layout_height="172dp"
+        android:layout_marginEnd="296dp"
+        android:layout_marginBottom="228dp"
+        android:src="@drawable/yellowcircle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/circlePurple"
+        android:layout_width="242dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/bluecircle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circlePink"
+        android:layout_width="242dp"
+        android:layout_height="493dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="484dp"
+        android:src="@drawable/pinkcircle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circleRed"
+        android:layout_width="231dp"
+        android:layout_height="454dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginBottom="500dp"
+        android:src="@drawable/redcircle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/circleGreen"
+        android:layout_width="158dp"
+        android:layout_height="326dp"
+        android:layout_marginStart="368dp"
+        android:layout_marginTop="220dp"
+        android:src="@drawable/greencircle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circleBlue"
+        android:layout_width="155dp"
+        android:layout_height="248dp"
+        android:layout_marginEnd="530dp"
+        android:layout_marginBottom="560dp"
+        android:src="@drawable/darkblue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/circleOrange"
+        android:layout_width="171dp"
+        android:layout_height="377dp"
+        android:layout_marginEnd="400dp"
+        android:layout_marginBottom="850dp"
+        android:src="@drawable/orangecircle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="158dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/randomlogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_1"
         android:layout_width="376dp"
         android:layout_height="356dp"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="7dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
@@ -37,10 +120,10 @@
                 android:id="@+id/login_txtview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/jacques_francois_shadow"
+                android:fontFamily="@font/lexend_bold"
                 android:text="@string/login_txt"
                 android:textAlignment="center"
-                android:textColor="@color/lavender"
+                android:textColor="@color/black"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
@@ -52,6 +135,7 @@
                 android:background="@drawable/lavender_border"
                 android:drawableLeft="@drawable/ic_baseline_person_pin_24"
                 android:drawablePadding="8dp"
+                android:fontFamily="@font/lexend_bold"
                 android:hint="Username"
                 android:padding="8dp"
                 android:textColor="@color/black" />
@@ -64,6 +148,7 @@
                 android:background="@drawable/lavender_border"
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
                 android:drawablePadding="8dp"
+                android:fontFamily="@font/lexend_bold"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="8dp"
@@ -80,7 +165,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/golden_border"
                 android:text="LOGIN"
                 android:textAlignment="center"
                 android:textColor="@color/white"
