@@ -44,6 +44,7 @@ public class FriendsFragment extends Fragment {
 //    private List<Friends> pendingList = new ArrayList<>();
 
     private ImageButton searchBtn;
+    private ImageButton backBtn;
 
 
     @Override
@@ -52,6 +53,14 @@ public class FriendsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
         searchBtn = view.findViewById(R.id.search_imgBtn);
+        backBtn = view.findViewById(R.id.back_arrow_imgBtn);
+
+//        backBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Navigation.findNavController(view).navigate(R.id.action_friendsFragment_to_profileFragment);
+//            }
+//        });
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override

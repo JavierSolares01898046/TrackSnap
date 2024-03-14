@@ -16,14 +16,14 @@
     <string name="dramagenre_txt">Drama</string>
     <string name="familygenre_txt">Family</string>
     <string name="fantasygenre_txt">Fantasy</string>
-    <string name="historicalgenre_txt">Historical</string>
+    <string name="historygenre_txt">History</string>
     <string name="horrorgenre_txt">Horror</string>
-    <string name="musicalgenre_txt">Musical</string>
+    <string name="musicgenre_txt">Music</string>
     <string name="mysterygenre_txt">Mystery</string>
     <string name="romancegenre_txt">Romance</string>
     <string name="sciencefictiongenre_txt">Science Fiction</string>
     <string name="sportsgenre_txt">Sports</string>
-    <string name="superherogenre_txt">Superhero</string>
+    <string name="tvmoviegenre_txt">TV Movie</string>
     <string name="thrillergenre_txt">Thriller</string>
     <string name="wargenre_txt">War</string>
     <string name="westerngenre_txt">Western</string>

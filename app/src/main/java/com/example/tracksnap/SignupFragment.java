@@ -112,7 +112,7 @@ public class SignupFragment extends Fragment {
                 // Removing whitespaces at the start and end of the string for each of the following
                 String email = signupEmail.getText().toString().trim();
                 String username = signupUsername.getText().toString().trim();
-                String lowercase_username = username.toLowerCase();
+                String username_lowercase = username.toLowerCase();
                 String password = signupPassword.getText().toString().trim();
                 String bio = signupBio.getText().toString().trim();
 
@@ -145,7 +145,7 @@ public class SignupFragment extends Fragment {
                 StringBuilder genresBuilder = new StringBuilder();
                 int genresSelected = 0;
                 for (CheckBox checkBox : signupGenre) {
-                    if (checkBox.isChecked()) {
+                    if (checkBox != null && checkBox.isChecked()) {
                         if (genresSelected < 3) {
                             genresBuilder.append(checkBox.getText()).append(",");
                             genresSelected++;
@@ -161,7 +161,7 @@ public class SignupFragment extends Fragment {
                 StringBuilder ratingsBuilder = new StringBuilder();
                 int ratingsSelected = 0;
                 for (CheckBox checkBox : signupRating) {
-                    if (checkBox.isChecked()) {
+                    if (checkBox != null && checkBox.isChecked()) {
                         if (ratingsSelected < 3) {
                             ratingsBuilder.append(checkBox.getText()).append(",");
                             ratingsSelected++;
@@ -176,7 +176,7 @@ public class SignupFragment extends Fragment {
                 StringBuilder durationsBuilder = new StringBuilder();
                 int durationsSelected = 0;
                 for (CheckBox checkBox : signupDuration) {
-                    if (checkBox.isChecked()) {
+                    if (checkBox != null && checkBox.isChecked()) {
                         if (durationsSelected < 3) {
                             durationsBuilder.append(checkBox.getText()).append(",");
                             durationsSelected++;
@@ -207,7 +207,7 @@ public class SignupFragment extends Fragment {
                     return;
                 }
 
-                HelperClass helperClass = new HelperClass(email, username, lowercase_username, password, bio, genres, ratings, durations);
+                HelperClass helperClass = new HelperClass(email, username, username_lowercase, password, bio, genres, ratings, durations);
                 reference.child(username).setValue(helperClass);
                 validSound.start();
 
