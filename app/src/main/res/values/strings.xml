@@ -55,6 +55,7 @@
     <string name="settings_button_description">Settings</string>
     <string name="reviewTitle">Review</string>
     <string name="WatchListTitle">Watchlist</string>
+    <string name="pendinglist_txt">Pending List</string>
 
 
 </resources>
