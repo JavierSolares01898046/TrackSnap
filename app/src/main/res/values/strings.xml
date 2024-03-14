@@ -51,6 +51,10 @@
     <string name="searchbar_txt">Search...</string>
     <string name="friendslist_txt">Friends List</string>
     <string name="username_txt">Username</string>
+    <string name="rememberCheckBox">Remember me</string>
+    <string name="settings_button_description">Settings</string>
+    <string name="reviewTitle">Review</string>
+    <string name="WatchListTitle">Watchlist</string>
 
 
 </resources>

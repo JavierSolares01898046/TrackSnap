@@ -9,6 +9,9 @@
         android:background="@color/black"
         tools:context=".ProfileFragment">
 
+
+
+
     <ImageButton
         android:id="@+id/settingsBtn"
         android:layout_width="wrap_content"
@@ -20,6 +23,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+<!--    </androidx.cardview.widget.CardView>-->
 
     <TextView
             android:id="@+id/username_txtview"
@@ -33,26 +38,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <View
-            android:id="@+id/verticalLine"
-            android:layout_width="5dp"
-            android:layout_height="0dp"
-            android:background="@color/black"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/default_user_img"
-            app:layout_constraintBottom_toBottomOf="parent" />
+    <!--  Guideline to split the screen into two halves  -->
 
-<!--  Guideline to split the screen into two halves  -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
-
-        <ImageView
+    <ImageView
             android:id="@+id/default_user_img"
             android:layout_width="0dp"
             android:layout_height="150dp"
@@ -63,57 +51,56 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/username_txtview" />
 
-        <View
-            android:id="@+id/rectangleView1"
-            android:layout_width="0dp"
-            android:layout_height="5dp"
-            android:background="@color/black"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/default_user_img" />
+    <View
+        android:id="@+id/rectangleView1"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/w"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/default_user_img" />
 
-        <TextView
-            android:id="@+id/profile_bio_txtview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BIO"
-            android:fontFamily="@font/jacques_francois_shadow"
-            android:textColor="@color/lavender"
-            android:textSize="30sp"
-            app:layout_constraintTop_toBottomOf="@id/rectangleView1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guideline"/>
+    <TextView
+        android:id="@+id/profile_bio_txtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/jacques_francois_shadow"
+        android:text="BIO"
+        android:textColor="@color/lavender"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rectangleView1" />
 
-        <View
-            android:id="@+id/rectangleView2"
-            android:layout_width="0dp"
-            android:layout_height="5dp"
-            android:background="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_bio_txtview" />
+    <View
+        android:id="@+id/rectangleView2"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_bio_txtview" />
 
-        <TextView
-            android:id="@+id/user_bio_txtview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/julius_sans_one"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/rectangleView2" />
+    <!--  The second half of the screen  -->
+    <TextView
+        android:id="@+id/user_bio_txtview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="192dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rectangleView2" />
 
-        <!--  The second half of the screen  -->
     <View
         android:id="@+id/rectangleView3"
         android:layout_width="0dp"
         android:layout_height="5dp"
-        android:background="@color/black"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@id/guideline"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/default_user_img" />
 
@@ -121,98 +108,84 @@
         android:id="@+id/profile_page_txtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/profile_txt"
+        android:layout_marginTop="148dp"
         android:fontFamily="@font/jacques_francois_shadow"
+        android:text="@string/profile_txt"
         android:textColor="@color/lavender"
         android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@id/rectangleView3"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <View
-        android:id="@+id/rectangleView4"
-        android:layout_width="0dp"
-        android:layout_height="5dp"
-        android:background="@color/black"
-        app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_page_txtview" />
+        app:layout_constraintTop_toBottomOf="@id/rectangleView3" />
 
 
     <Button
         android:id="@+id/moviesWatched_btn"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:text="@string/movies_watched_txt"
-        android:textSize="18dp"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:background="@drawable/golden_border"
         android:layout_margin="20dp"
+        android:background="@drawable/golden_border"
+        android:text="@string/movies_watched_txt"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
         app:backgroundTint="@null"
-        app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rectangleView4"/>
+        tools:layout_editor_absoluteY="431dp" />
 
     <Button
         android:id="@+id/watchlist_btn"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:text="@string/watchlist_txt"
-        android:textSize="18dp"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:background="@drawable/golden_border"
         android:layout_margin="20dp"
+        android:background="@drawable/golden_border"
+        android:text="@string/watchlist_txt"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
         app:backgroundTint="@null"
-        app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/moviesWatched_btn"/>
+        app:layout_constraintTop_toBottomOf="@id/moviesWatched_btn" />
 
     <Button
         android:id="@+id/reviews_btn"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:text="@string/reviews_txt"
-        android:textSize="18dp"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:background="@drawable/golden_border"
         android:layout_margin="20dp"
+        android:background="@drawable/golden_border"
+        android:text="@string/reviews_txt"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
         app:backgroundTint="@null"
-        app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/watchlist_btn"/>
+        app:layout_constraintTop_toBottomOf="@id/watchlist_btn" />
 
     <Button
         android:id="@+id/friends_btn"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:text="@string/friends_txt"
-        android:textSize="18dp"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:background="@drawable/golden_border"
         android:layout_margin="20dp"
+        android:background="@drawable/golden_border"
+        android:text="@string/friends_txt"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
         app:backgroundTint="@null"
-        app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reviews_btn"/>
+        app:layout_constraintTop_toBottomOf="@id/reviews_btn" />
 
     <Button
         android:id="@+id/home_movie_btn"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:text="MOVIE HOME"
-        android:textSize="18dp"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:background="@drawable/golden_border"
         android:layout_margin="20dp"
+        android:background="@drawable/golden_border"
+        android:text="MOVIE HOME"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
         app:backgroundTint="@null"
-        app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/friends_btn"/>
+        app:layout_constraintTop_toBottomOf="@id/friends_btn" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
