@@ -88,6 +88,7 @@ public class SignupFragment extends Fragment {
                 // Removing whitespaces at the start and end of the string for each of the following
                 String email = signupEmail.getText().toString().trim();
                 String username = signupUsername.getText().toString().trim();
+                String lowercase_username = username.toLowerCase();
                 String password = signupPassword.getText().toString().trim();
                 String bio = signupBio.getText().toString().trim();
 
@@ -175,7 +176,7 @@ public class SignupFragment extends Fragment {
                     return;
                 }
 
-                HelperClass helperClass = new HelperClass(email, username, password, bio, genres, ratings, durations);
+                HelperClass helperClass = new HelperClass(email, username, lowercase_username, password, bio, genres, ratings, durations);
                 reference.child(username).setValue(helperClass);
 
                 Toast.makeText(requireContext(), "You account has been created!", Toast.LENGTH_SHORT).show();
