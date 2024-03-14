@@ -33,7 +33,7 @@
         android:id="@+id/aboutText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/about"
+        android:text="about"
         android:height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
