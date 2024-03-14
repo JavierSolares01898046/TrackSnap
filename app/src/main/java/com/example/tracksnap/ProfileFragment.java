@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -30,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileFragment extends Fragment {
     private TextView usernameTxtView;
+
+    private ImageButton setting_btn;
     private TextView bioTxtView;
     private Button moviesWatchedBtn;
     private Button watchlistBtn;
@@ -37,6 +40,7 @@ public class ProfileFragment extends Fragment {
     private Button friendsBtn;
 
     private Button homemovie_btn;
+
     private String username = "";
     DatabaseReference databaseReference;
 
@@ -52,6 +56,7 @@ public class ProfileFragment extends Fragment {
         reviewsBtn = view.findViewById(R.id.reviews_btn);
         friendsBtn = view.findViewById(R.id.friends_btn);
         homemovie_btn = view.findViewById(R.id.home_movie_btn);
+        setting_btn= view.findViewById(R.id.settingsBtn);
 
         // Obtaining the user's username
         username = ProfileFragmentArgs.fromBundle(requireArguments()).getUsername();
@@ -115,6 +120,16 @@ public class ProfileFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             }
         });
+
+        setting_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_settingsFragment);
+            }
+        });
+
+
+
 
 
         return view;
