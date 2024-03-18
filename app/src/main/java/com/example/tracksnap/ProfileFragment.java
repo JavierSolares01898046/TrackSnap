@@ -40,7 +40,6 @@ public class ProfileFragment extends Fragment {
     private Button watchlistBtn;
     private Button reviewsBtn;
     private Button friendsBtn;
-
     private Button homemovie_btn;
 
     private String username = "";
