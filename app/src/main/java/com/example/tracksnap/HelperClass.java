@@ -3,7 +3,7 @@ package com.example.tracksnap;
 import java.util.List;
 
 public class HelperClass {
-    String email, username, lowercase_username, password, bio, genre, rating, duration;
+    String email, username, username_lowercase, password, bio, genre, rating, duration;
 //    List<String> genre;
 //    List<String> rating;
 //    List<String> duration;
@@ -11,10 +11,10 @@ public class HelperClass {
     public HelperClass() {
     }
 
-    public HelperClass(String email, String username, String lowercase_username, String password, String bio, String genre, String rating, String duration) {
+    public HelperClass(String email, String username, String username_lowercase, String password, String bio, String genre, String rating, String duration) {
         this.email = email;
         this.username = username;
-        this.lowercase_username = lowercase_username;
+        this.username_lowercase = username_lowercase;
         this.password = password;
         this.bio = bio;
         this.genre = genre;
@@ -23,11 +23,11 @@ public class HelperClass {
     }
 
     public String getLowercase_username() {
-        return lowercase_username;
+        return username_lowercase;
     }
 
     public void setLowercase_username(String lowercase_username) {
-        this.lowercase_username = lowercase_username;
+        this.username_lowercase = lowercase_username;
     }
 
     public String getEmail() {

@@ -4,40 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:padding="16dp"
     tools:context=".SettingsFragment">
 
+    <!-- Dark Mode Switch -->
     <Switch
         android:id="@+id/darkModeSwitch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Dark Mode"
+        android:text="Mute Audio"
+        android:textColor="@color/w"
         android:height="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="32dp"/>
 
+    <!-- App Version Text -->
     <TextView
         android:id="@+id/versionText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="App Version: 1.0.0 "
+        android:textColor="@color/w"
         android:height="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch"
         android:layout_marginTop="24dp"/>
 
+    <!-- About Text -->
     <TextView
         android:id="@+id/aboutText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="about"
+        android:text="Are you gonna Robbie Dobie Lobie rokie Tokie my shts??"
+        android:textColor="@color/w"
         android:height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/versionText"
         android:layout_marginTop="24dp"/>
 
+    <!-- Edit Profile Button -->
+
+    <!-- Logout Button -->
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:background="#000000"
+        android:textColor="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintTop_toBottomOf="@id/aboutText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

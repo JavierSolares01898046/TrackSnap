@@ -7,6 +7,9 @@
         <item>@font/fascinate</item>
         <item>@font/jacques_francois_shadow</item>
         <item>@font/julius_sans_one</item>
+        <item>@font/lexend</item>
         <item>@font/lexend_bold</item>
+        <item>@font/lexend_medium</item>
+        <item>@font/lexend_semibold</item>
     </array>
 </resources>

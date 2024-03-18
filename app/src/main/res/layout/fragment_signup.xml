@@ -200,6 +200,13 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/gcheckBox1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/actiongenre_txt" />
+
+                    <CheckBox
                         android:id="@+id/gcheckBox2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -225,21 +232,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/biographicalgenre_txt" />
+                        android:text="@string/comedygenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/comedygenre_txt" />
+                        android:text="@string/crimegenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/crimegenre_txt" />
+                        android:text="@string/documentarygenre_txt" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -253,21 +260,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/documentarygenre_txt" />
+                        android:text="@string/dramagenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox8"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/dramagenre_txt" />
+                        android:text="@string/familygenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox9"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/familygenre_txt" />
+                        android:text="@string/fantasygenre_txt" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -281,21 +288,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/fantasygenre_txt" />
+                        android:text="@string/historygenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/historicalgenre_txt" />
+                        android:text="@string/horrorgenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox12"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/horrorgenre_txt" />
+                        android:text="@string/musicgenre_txt" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -309,21 +316,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/musicalgenre_txt" />
+                        android:text="@string/mysterygenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox14"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/mysterygenre_txt" />
+                        android:text="@string/romancegenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox15"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/romancegenre_txt" />
+                        android:text="@string/sciencefictiongenre_txt" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -337,21 +344,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/sciencefictiongenre_txt" />
+                        android:text="@string/tvmoviegenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox17"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/sportsgenre_txt" />
+                        android:text="@string/thrillergenre_txt" />
 
                     <CheckBox
                         android:id="@+id/gcheckBox18"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/superherogenre_txt" />
+                        android:text="@string/wargenre_txt" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -362,20 +369,6 @@
 
                     <CheckBox
                         android:id="@+id/gcheckBox19"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/thrillergenre_txt" />
-
-                    <CheckBox
-                        android:id="@+id/gcheckBox20"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/wargenre_txt" />
-
-                    <CheckBox
-                        android:id="@+id/gcheckBox21"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
