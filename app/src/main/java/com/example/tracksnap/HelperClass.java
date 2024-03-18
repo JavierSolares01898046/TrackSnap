@@ -22,12 +22,12 @@ public class HelperClass {
         this.duration = duration;
     }
 
-    public String getLowercase_username() {
+    public String getUsername_lowercase() {
         return username_lowercase;
     }
 
-    public void setLowercase_username(String lowercase_username) {
-        this.username_lowercase = lowercase_username;
+    public void setUsername_lowercase(String username_lowercase) {
+        this.username_lowercase = username_lowercase;
     }
 
     public String getEmail() {

@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +44,7 @@ public class ProfileFragment extends Fragment {
     private Button homemovie_btn;
 
     private String username = "";
+    private String otherUsername = "";
     DatabaseReference databaseReference;
 
     @Override
@@ -60,6 +63,15 @@ public class ProfileFragment extends Fragment {
 
         // Obtaining the user's username
         username = ProfileFragmentArgs.fromBundle(requireArguments()).getUsername();
+        Toast.makeText(requireContext(), "Current Username: " + username, Toast.LENGTH_SHORT).show();
+
+//        if (otherUsername.equals(username)) {
+//            // Enable the Friends button
+//            friendsBtn.setEnabled(true);
+//        } else {
+//            // Disable the Friends button
+//            friendsBtn.setEnabled(false);
+//        }
 
         // Displays username at the top of the profile page
         usernameTxtView.setText(username);
@@ -109,7 +121,8 @@ public class ProfileFragment extends Fragment {
         friendsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_friendsFragment);
+                ProfileFragmentDirections.ActionProfileFragmentToFriendsFragment action = ProfileFragmentDirections.actionProfileFragmentToFriendsFragment(username);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 

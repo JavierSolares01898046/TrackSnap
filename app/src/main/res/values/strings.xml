@@ -57,6 +57,7 @@
     <string name="reviewTitle">Review</string>
     <string name="WatchListTitle">Watchlist</string>
     <string name="pendinglist_txt">Pending List</string>
-
+    <string name="add_txt">Add</string>
+    <string name="block_txt">Block</string>
 
 </resources>

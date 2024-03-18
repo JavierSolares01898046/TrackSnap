@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +33,7 @@ public class SearchFragment extends Fragment {
     RecyclerView searchRecycler;
     SearchView searchView;
     List<Friends> users = new ArrayList<>();
+    private String currUsername = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +44,10 @@ public class SearchFragment extends Fragment {
         searchView = view.findViewById(R.id.searchView);
         searchRecycler = view.findViewById(R.id.search_recyclerview);
 
+        // Obtaining the user's username
+        currUsername = SearchFragmentArgs.fromBundle(requireArguments()).getUsername();
+        Toast.makeText(requireContext(), "Current Username: " + currUsername, Toast.LENGTH_SHORT).show();
+
         // Goes back to the FriendsFragment
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +56,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        searchAdapter = new SearchAdapter(requireContext(), users);
+        searchAdapter = new SearchAdapter(requireContext(), users, currUsername);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext());
         searchRecycler.setLayoutManager(layoutManager);
         searchRecycler.setAdapter(searchAdapter);

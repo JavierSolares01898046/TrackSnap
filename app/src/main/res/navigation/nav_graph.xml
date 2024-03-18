@@ -72,6 +72,9 @@
         <action
             android:id="@+id/action_friendsFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="username"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/moviesWatchedFragment"
@@ -94,7 +97,7 @@
         android:label="fragment_movie_home"
         tools:layout="@layout/fragment_movie_home" >
         <argument
-            android:name="username2"
+            android:name="username"
             app:argType="string" />
     </fragment>
     <fragment
@@ -116,7 +119,31 @@
             android:id="@+id/action_searchFragment_to_friendsFragment"
             app:destination="@id/friendsFragment" />
         <action
-            android:id="@+id/action_searchFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_searchFragment_to_usersProfileFragment"
+            app:destination="@id/usersProfileFragment" />
+        <argument
+            android:name="username"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/usersProfileFragment"
+        android:name="com.example.tracksnap.UsersProfileFragment"
+        android:label="fragment_users_profile"
+        tools:layout="@layout/fragment_users_profile" >
+        <action
+            android:id="@+id/action_usersProfileFragment_to_moviesWatchedFragment"
+            app:destination="@id/moviesWatchedFragment" />
+        <action
+            android:id="@+id/action_usersProfileFragment_to_watchlistFragment"
+            app:destination="@id/watchlistFragment" />
+        <action
+            android:id="@+id/action_usersProfileFragment_to_reviewsFragment"
+            app:destination="@id/reviewsFragment" />
+        <argument
+            android:name="otherUsername"
+            app:argType="string" />
+        <argument
+            android:name="currentUsername"
+            app:argType="string" />
     </fragment>
 </navigation>

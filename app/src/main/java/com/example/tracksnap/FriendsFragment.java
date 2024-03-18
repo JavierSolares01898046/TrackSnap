@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +43,7 @@ public class FriendsFragment extends Fragment {
 //    private DatabaseReference reference;
 //    private FriendsAdapter pendingAdapter;
 //    private List<Friends> pendingList = new ArrayList<>();
-
+    private String username = "";
     private ImageButton searchBtn;
     private ImageButton backBtn;
 
@@ -55,6 +56,10 @@ public class FriendsFragment extends Fragment {
         searchBtn = view.findViewById(R.id.search_imgBtn);
         backBtn = view.findViewById(R.id.back_arrow_imgBtn);
 
+        // Obtaining the user's username
+        username = FriendsFragmentArgs.fromBundle(requireArguments()).getUsername();
+        Toast.makeText(requireContext(), "Current Username: " + username, Toast.LENGTH_SHORT).show();
+
 //        backBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -65,7 +70,9 @@ public class FriendsFragment extends Fragment {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_friendsFragment_to_searchFragment);
+                FriendsFragmentDirections.ActionFriendsFragmentToSearchFragment action = FriendsFragmentDirections.actionFriendsFragmentToSearchFragment(username);
+                Navigation.findNavController(view).navigate(action);
+//                Navigation.findNavController(view).navigate(R.id.action_friendsFragment_to_searchFragment);
             }
         });
 

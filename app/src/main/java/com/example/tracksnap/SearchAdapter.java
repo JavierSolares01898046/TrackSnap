@@ -1,6 +1,7 @@
 package com.example.tracksnap;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -16,15 +18,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
-    Context context;
-    List<Friends> users;
+    private Context context;
+    private List<Friends> users;
+    private String currUsername = "";
     ImageView userAvatar;
     TextView usernameTxt;
     RelativeLayout topRel;
 
-    public SearchAdapter(Context context, List<Friends> users) {
+    public SearchAdapter(Context context, List<Friends> users, String currentUsername) {
         this.context = context;
         this.users = users;
+        this.currUsername = currentUsername;
     }
 
     @NonNull
@@ -44,7 +48,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SearchFragmentDirections.ActionSearchFragmentToProfileFragment action = SearchFragmentDirections.actionSearchFragmentToProfileFragment(user.getUsername());
+                SearchFragmentDirections.ActionSearchFragmentToUsersProfileFragment action = SearchFragmentDirections.actionSearchFragmentToUsersProfileFragment(user.getUsername(), currUsername);
 
                 Navigation.findNavController(view).navigate(action);
             }
