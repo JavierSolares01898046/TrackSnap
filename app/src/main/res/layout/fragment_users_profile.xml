@@ -59,12 +59,11 @@
         android:textStyle="bold"
         android:fontFamily="@font/lexend_semibold"
         android:background="@color/red"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="5dp"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@id/add_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/profilePic"/>
+        app:layout_constraintBottom_toTopOf="@id/rectangleView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/profilePic"/>
 
     <Button
         android:id="@+id/add_btn"
@@ -83,22 +82,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/profilePic"/>
 
-    <Button
-        android:id="@+id/block_btn"
-        android:layout_width="120dp"
-        android:layout_height="45dp"
-        android:text="@string/block_txt"
-        android:textSize="18dp"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:fontFamily="@font/lexend_semibold"
-        android:background="@color/red"
-        android:layout_marginEnd="5dp"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@id/rectangleView1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/profilePic" />
+<!--    <Button-->
+<!--        android:id="@+id/block_btn"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:text="@string/block_txt"-->
+<!--        android:textSize="18dp"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textStyle="bold"-->
+<!--        android:fontFamily="@font/lexend_semibold"-->
+<!--        android:background="@color/red"-->
+<!--        android:layout_marginEnd="5dp"-->
+<!--        app:backgroundTint="@null"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/rectangleView1"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@id/profilePic" />-->
 
     <View
         android:id="@+id/rectangleView1"

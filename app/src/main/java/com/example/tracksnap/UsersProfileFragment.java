@@ -1,11 +1,14 @@
 package com.example.tracksnap;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +34,8 @@ public class UsersProfileFragment extends Fragment {
     private String currUsername = "";
     private String requestId = "";
     private String addBtnTxt = "";
+    private String declineBtnTxt = "";
+    private Boolean friendStatus = false;
     FirebaseDatabase database;
     DatabaseReference databaseReference;
     DatabaseReference friendRequestRef;
@@ -44,7 +49,6 @@ public class UsersProfileFragment extends Fragment {
         usernameTxtView = view.findViewById(R.id.username_txtview);
         bioTxtView = view.findViewById(R.id.user_bio_txtview);
         addBtn = view.findViewById(R.id.add_btn);
-        blockBtn = view.findViewById(R.id.block_btn);
         declineBtn = view.findViewById(R.id.decline_btn);
 
         // Making the declineBtn hidden
@@ -126,12 +130,20 @@ public class UsersProfileFragment extends Fragment {
         declineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                declineBtnTxt = declineBtn.getText().toString();
                 friendRequestRef.child(requestId).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            friendRequestRef.child("status").setValue("declined");
+//                        if (snapshot.exists()) {
+                        if (declineBtnTxt.equals("Decline") || declineBtnTxt.equals("Unsend")) {
+                            friendRequestRef.child(requestId).child("status").setValue("none");
+                        } else if (declineBtnTxt.equals("Remove")) {
+                            // Popup to confirm the removal of your friend
+                            showDeclinePopup(otherUsername);
+//                            friendRequestRef.child(requestId).child("status").setValue("none");
                         }
+                        setAddButtonStatus(currUsername, otherUsername);
+//                        }
                     }
 
                     @Override
@@ -139,8 +151,6 @@ public class UsersProfileFragment extends Fragment {
                         // Handle onCancelled
                     }
                 });
-                setAddButtonStatus(currUsername, otherUsername);
-
                 Toast.makeText(requireContext(), "BUTTON CLICKED", Toast.LENGTH_SHORT).show();
             }
         });
@@ -194,7 +204,7 @@ public class UsersProfileFragment extends Fragment {
                     Log.d("FirebaseData", "Receiver: " + receiverValue);
                     Log.d("FirebaseData", "Status: " + status);
 //                    switch (status) {
-                    if (status.equals("declined")) {
+                    if (status.equals("none")) {
                         addBtn.setText("Add");
                         addBtn.setTextSize(18);
                         addBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue));
@@ -204,18 +214,28 @@ public class UsersProfileFragment extends Fragment {
                             addBtn.setText("Pending");
                             addBtn.setTextSize(16);
                             addBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gold));
+                            // Making the declineBtn visible
+                            declineBtn.setText("Unsend");
+                            declineBtn.setTextSize(16);
+                            declineBtn.setVisibility(View.VISIBLE);
                         } else if (receiverValue != null && receiverValue.equals(currentUser) && senderValue.equals(otherUsername)) {  // checking to see if the current user is the one who received the friend request
                             addBtn.setText("Accept");
                             addBtn.setTextSize(16);
                             addBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green));
                             // Making the declineBtn visible
+                            declineBtn.setText("Decline");
+                            declineBtn.setTextSize(16);
                             declineBtn.setVisibility(View.VISIBLE);
+
                         }
                     } else if (status.equals("friends")) {
                         addBtn.setText("Friends");
                         addBtn.setTextSize(16);
                         addBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.lavender));
-                        declineBtn.setVisibility(View.GONE);
+                        // Making the declineBtn visible
+                        declineBtn.setText("Remove");
+                        declineBtn.setTextSize(16);
+                        declineBtn.setVisibility(View.VISIBLE);
                     } else {
                         addBtn.setText("Add");
                         addBtn.setTextSize(18);
@@ -231,6 +251,27 @@ public class UsersProfileFragment extends Fragment {
                 // Handle onCancelled
             }
         });
+    }
+
+    public void showDeclinePopup(String otherUserUsername) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Friends");
+        String message = "Are you sure you want to remove " + otherUserUsername;
+        builder.setMessage(message);
+        builder.setPositiveButton("YES!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                setAddButtonStatus(currUsername, otherUsername);
+                friendRequestRef.child(requestId).child("status").setValue("none");
+            }
+        });
+
+        builder.setNegativeButton("NO!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.show();
     }
 
 
