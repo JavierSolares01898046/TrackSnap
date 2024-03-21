@@ -3,7 +3,8 @@ package com.example.tracksnap;
 import java.util.List;
 
 public class HelperClass {
-    String email, username, username_lowercase, password, bio, genre, rating, duration;
+    String email, username, username_lowercase, password, bio, genre, rating, duration, profilePicUrl;
+
 //    List<String> genre;
 //    List<String> rating;
 //    List<String> duration;
@@ -20,8 +21,17 @@ public class HelperClass {
         this.genre = genre;
         this.rating = rating;
         this.duration = duration;
+        this.profilePicUrl = profilePicUrl;
     }
 
+
+    public String getProfilePicUrl() {
+        return profilePicUrl;
+    }
+
+    public void setProfilePicUrl(String profilePicUrl) {
+        this.profilePicUrl = profilePicUrl;
+    }
     public String getUsername_lowercase() {
         return username_lowercase;
     }
