@@ -99,6 +99,9 @@
         <argument
             android:name="username"
             app:argType="string" />
+        <action
+            android:id="@+id/action_movieHomeFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -150,4 +153,8 @@
             android:name="currentUsername"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.tracksnap.MovieDetailsFragment"
+        android:label="MovieDetailFragment" />
 </navigation>
