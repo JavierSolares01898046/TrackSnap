@@ -3,8 +3,10 @@ package com.example.tracksnap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +26,14 @@ public class UsersProfileFragment extends Fragment {
     private TextView bioTxtView;
     private Button addBtn;
     private Button blockBtn;
+    private Button declineBtn;
     private String otherUsername = "";
     private String currUsername = "";
+    private String requestId = "";
+    private String addBtnTxt = "";
+    FirebaseDatabase database;
     DatabaseReference databaseReference;
+    DatabaseReference friendRequestRef;
 
 
     @Override
@@ -38,6 +45,10 @@ public class UsersProfileFragment extends Fragment {
         bioTxtView = view.findViewById(R.id.user_bio_txtview);
         addBtn = view.findViewById(R.id.add_btn);
         blockBtn = view.findViewById(R.id.block_btn);
+        declineBtn = view.findViewById(R.id.decline_btn);
+
+        // Making the declineBtn hidden
+        declineBtn.setVisibility(View.GONE);
 
         // Obtaining the current username
         currUsername = UsersProfileFragmentArgs.fromBundle(requireArguments()).getCurrentUsername();
@@ -70,16 +81,158 @@ public class UsersProfileFragment extends Fragment {
             }
         });
 
-        String senderUsername = currUsername;
-        String receiverUsername = otherUsername;
-        // Creating a unique ID for the request
-        String requestId = senderUsername + "_" + receiverUsername;
+        friendRequestRef = FirebaseDatabase.getInstance().getReference("friendRequests");
 
-        // Create a new node under friendRequests for the request
-//        databaseReference.child("friendRequests").child(requestId).setValue(new FriendRequest(senderUsername, receiverUsername, "pending"));
+        // Creating a unique ID for the request based on alphabetical order of usernames
+        if (currUsername.compareTo(otherUsername) < 0) {
+            requestId = currUsername + "_*_" + otherUsername;
+        } else {
+            requestId = otherUsername + "_*_" + currUsername;
+        }
 
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addBtnTxt = addBtn.getText().toString();
+                friendRequestRef.child(requestId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if (!snapshot.exists()) {
+//                            Toast.makeText(requireContext(), "snapshot CLICKED", Toast.LENGTH_SHORT).show();
+//                            String status = snapshot.child("status").getValue(String.class);
+                            if (addBtnTxt.equals("Add")) {
+                                Toast.makeText(requireContext(), "ADD BTN CLICKED", Toast.LENGTH_SHORT).show();
+                                friendRequestRef.child(requestId).child("status").setValue("pending");
+                                sendingFriendRequest(currUsername, otherUsername, requestId);
+                            } else if (addBtnTxt.equals("Accept")) {
+                                friendRequestRef.child(requestId).child("status").setValue("friends");
+                            }
+                            setAddButtonStatus(currUsername, otherUsername);
+                            Log.d("FirebaseData", "SECOND CALL OF FUNCTION");
+//                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // Handle onCancelled
+                    }
+                });
+
+                Toast.makeText(requireContext(), "BUTTON CLICKED", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        declineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                friendRequestRef.child(requestId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            friendRequestRef.child("status").setValue("declined");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // Handle onCancelled
+                    }
+                });
+                setAddButtonStatus(currUsername, otherUsername);
+
+                Toast.makeText(requireContext(), "BUTTON CLICKED", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // This function will set the correct text of the addBtn
+        setAddButtonStatus(currUsername, otherUsername);
+        Log.d("FirebaseData", "FIRST CALL OF FUNCTION");
 
 
         return view;
     }
+
+    private void sendingFriendRequest(String userSender, String userReceiver, String requestId) {
+//        friendRequestRef = FirebaseDatabase.getInstance().getReference("friendRequests").child(requestId);
+        friendRequestRef.child(requestId).child("sender").setValue(userSender);
+        friendRequestRef.child(requestId).child("receiver").setValue(userReceiver);
+//        friendRequestRef.child("status").setValue("pending");
+    }
+
+
+
+    // CHECK TO SEE THE STATUS OF THE CURRENT USERNAME
+
+    // 1. If the current user's status = 'decline'/null
+    //      a. set addBtn text --> 'Add'
+
+    // 2. If the current user's status = 'pending' && current user == sender
+    //      a. set addBtn text --> 'Pending'
+
+    // 3. If the current user's status = 'pending' && current user == receiver
+    //      a. set addBtn text --> 'Accept'
+    //      b. add another button to decline
+
+    // 4. If the current user's status = 'friends'
+    //      a. set addBtn text --> 'Friends'
+    public void setAddButtonStatus(String currentUser, String otherUsername) {
+        friendRequestRef.child(requestId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.d("FirebaseData", "RequestId: " + requestId);
+
+
+
+
+                if (snapshot.exists()) {
+                    String senderValue = snapshot.child("sender").getValue(String.class);
+                    String receiverValue = snapshot.child("receiver").getValue(String.class);
+                    String status = snapshot.child("status").getValue(String.class);
+
+                    Log.d("FirebaseData", "Sender: " + senderValue);
+                    Log.d("FirebaseData", "Receiver: " + receiverValue);
+                    Log.d("FirebaseData", "Status: " + status);
+//                    switch (status) {
+                    if (status.equals("declined")) {
+                        addBtn.setText("Add");
+                        addBtn.setTextSize(18);
+                        addBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue));
+                        declineBtn.setVisibility(View.GONE);
+                    } else if(status.equals("pending")) {
+                        if (senderValue != null && senderValue.equals(currentUser) && receiverValue.equals(otherUsername)) {      // checking to see if the current user is the one who sent the friend request
+                            addBtn.setText("Pending");
+                            addBtn.setTextSize(16);
+                            addBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gold));
+                        } else if (receiverValue != null && receiverValue.equals(currentUser) && senderValue.equals(otherUsername)) {  // checking to see if the current user is the one who received the friend request
+                            addBtn.setText("Accept");
+                            addBtn.setTextSize(16);
+                            addBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green));
+                            // Making the declineBtn visible
+                            declineBtn.setVisibility(View.VISIBLE);
+                        }
+                    } else if (status.equals("friends")) {
+                        addBtn.setText("Friends");
+                        addBtn.setTextSize(16);
+                        addBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.lavender));
+                        declineBtn.setVisibility(View.GONE);
+                    } else {
+                        addBtn.setText("Add");
+                        addBtn.setTextSize(18);
+                        addBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue));
+                        declineBtn.setVisibility(View.GONE);
+                    }
+//                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle onCancelled
+            }
+        });
+    }
+
+
+
 }

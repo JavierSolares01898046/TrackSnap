@@ -63,7 +63,7 @@ public class MovieHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_movie_home, container, false);
 
 
-        username = MovieHomeFragmentArgs.fromBundle(requireArguments()).getUsername2();
+        username = MovieHomeFragmentArgs.fromBundle(requireArguments()).getUsername();
 //        searchUserData(username);
 //        Toast.makeText(getContext(), "Username: " + username, Toast.LENGTH_SHORT).show();
 
