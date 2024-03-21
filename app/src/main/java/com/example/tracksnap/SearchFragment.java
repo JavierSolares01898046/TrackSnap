@@ -52,7 +52,8 @@ public class SearchFragment extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_friendsFragment);
+                SearchFragmentDirections.ActionSearchFragmentToFriendsFragment action = SearchFragmentDirections.actionSearchFragmentToFriendsFragment(currUsername);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 

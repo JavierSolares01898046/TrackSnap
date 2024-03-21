@@ -19,6 +19,11 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         this.friendsList = friendsList;
     }
 
+    public void addFriend(Friends friend) {
+        friendsList.add(friend);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

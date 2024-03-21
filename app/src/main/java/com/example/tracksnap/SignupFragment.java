@@ -109,6 +109,9 @@ public class SignupFragment extends Fragment {
                 database = FirebaseDatabase.getInstance();
                 reference = database.getReference("users");
 
+//                FirebaseDatabase database2 = FirebaseDatabase.getInstance();
+//                DatabaseReference reference2 = database2.getReference("friendRequests");
+
                 // Removing whitespaces at the start and end of the string for each of the following
                 String email = signupEmail.getText().toString().trim();
                 String username = signupUsername.getText().toString().trim();
