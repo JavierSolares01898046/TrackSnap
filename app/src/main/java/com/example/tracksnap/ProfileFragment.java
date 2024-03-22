@@ -113,7 +113,9 @@ public class ProfileFragment extends Fragment {
         reviewsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_reviewsFragment);
+                ProfileFragmentDirections.ActionProfileFragmentToReviewsFragment action = ProfileFragmentDirections.actionProfileFragmentToReviewsFragment(username);
+                Navigation.findNavController(view).navigate(action);
+//                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_reviewsFragment);
             }
         });
 
