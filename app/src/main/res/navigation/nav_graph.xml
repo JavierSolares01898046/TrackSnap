@@ -85,21 +85,7 @@
         android:id="@+id/reviewsFragment"
         android:name="com.example.tracksnap.ReviewsFragment"
         android:label="fragment_reviews"
-        tools:layout="@layout/fragment_reviews" >
-        <argument
-            android:name="username"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_reviewsFragment_to_movieHomeFragment"
-            app:destination="@id/movieHomeFragment" />
-        <action
-            android:id="@+id/action_reviewsFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_reviewsFragment_to_moviesWatchedFragment"
-            app:destination="@id/moviesWatchedFragment" />
-
-    </fragment>
+        tools:layout="@layout/fragment_reviews" />
     <fragment
         android:id="@+id/watchlistFragment"
         android:name="com.example.tracksnap.WatchlistFragment"
@@ -113,6 +99,9 @@
         <argument
             android:name="username"
             app:argType="string" />
+        <action
+            android:id="@+id/action_movieHomeFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -122,6 +111,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="username"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/helpFragment"
@@ -164,4 +156,8 @@
             android:name="currentUsername"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.tracksnap.MovieDetailsFragment"
+        android:label="MovieDetailFragment" />
 </navigation>

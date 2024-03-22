@@ -9,54 +9,74 @@
     tools:context=".SettingsFragment">
 
     <!-- Dark Mode Switch -->
-    <Switch
-        android:id="@+id/darkModeSwitch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Mute Audio"
-        android:textColor="@color/w"
-        android:height="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp"/>
 
     <!-- App Version Text -->
-    <TextView
-        android:id="@+id/versionText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="App Version: 1.0.0 "
-        android:textColor="@color/w"
-        android:height="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch"
-        android:layout_marginTop="24dp"/>
 
     <!-- About Text -->
-    <TextView
-        android:id="@+id/aboutText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Are you gonna Robbie Dobie Lobie rokie Tokie my shts??"
-        android:textColor="@color/w"
-        android:height="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/versionText"
-        android:layout_marginTop="24dp"/>
 
     <!-- Edit Profile Button -->
 
     <!-- Logout Button -->
+
+    <Button
+        android:id="@+id/editPicButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#000000"
+        android:text="Button"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/darkModeSwitch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903" />
+
+    <Switch
+        android:id="@+id/darkModeSwitch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="212dp"
+        android:height="48dp"
+        android:text="Mute Audio"
+        android:textColor="@color/w"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/versionText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:height="48dp"
+        android:text="App Version: 1.0.0 "
+        android:textColor="@color/w"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch" />
+
+    <TextView
+        android:id="@+id/aboutText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:height="150dp"
+        android:text="Are you gonna Robbie Dobie Lobie rokie Tokie my shts??"
+        android:textColor="@color/w"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/versionText" />
+
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Logout"
         android:background="#000000"
-        android:textColor="#FFFFFF"
+        app:backgroundTint="@color/white"
+        android:textColor="@color/black"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         app:layout_constraintTop_toBottomOf="@id/aboutText"
@@ -64,4 +84,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/profilePicText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/changePicText"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editPicButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.86" />
+
+    <ImageView
+        android:id="@+id/profilePicEdit"
+        android:layout_width="76dp"
+        android:layout_height="63dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/profilePicText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
