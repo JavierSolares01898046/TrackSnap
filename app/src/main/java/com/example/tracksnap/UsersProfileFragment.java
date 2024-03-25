@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -140,7 +141,6 @@ public class UsersProfileFragment extends Fragment {
                         } else if (declineBtnTxt.equals("Remove")) {
                             // Popup to confirm the removal of your friend
                             showDeclinePopup(otherUsername);
-//                            friendRequestRef.child(requestId).child("status").setValue("none");
                         }
                         setAddButtonStatus(currUsername, otherUsername);
 //                        }
@@ -227,6 +227,10 @@ public class UsersProfileFragment extends Fragment {
                             declineBtn.setTextSize(16);
                             declineBtn.setVisibility(View.VISIBLE);
 
+//                            // Add the other user to the "Pending List" in FriendsFragment
+//                            Friends friend = new Friends(otherUsername, R.drawable.defaultuser); // Customize the avatar as needed
+//                            FriendsAdapter adapter = new FriendsAdapter(friendsList); // Assuming friendsList is accessible here
+//                            adapter.addFriend(friend);
                         }
                     } else if (status.equals("friends")) {
                         addBtn.setText("Friends");
@@ -261,8 +265,19 @@ public class UsersProfileFragment extends Fragment {
         builder.setPositiveButton("YES!", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                setAddButtonStatus(currUsername, otherUsername);
-                friendRequestRef.child(requestId).child("status").setValue("none");
+                friendRequestRef.child(requestId).child("status").setValue("none", new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        if (error == null) {
+                            // Data set successfully, update UI
+                            setAddButtonStatus(currUsername, otherUsername);
+                            Toast.makeText(requireContext(), "User removed as a friend", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Handle error if setValue operation fails
+                            Toast.makeText(requireContext(), "Error removing user as a friend", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 

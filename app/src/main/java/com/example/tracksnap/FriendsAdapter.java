@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -14,9 +15,11 @@ import java.util.List;
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder> {
 
     private List<Friends> friendsList;
+    private String currUsername = "";
 
-    public FriendsAdapter(List<Friends> friendsList) {
+    public FriendsAdapter(List<Friends> friendsList, String currentUsername) {
         this.friendsList = friendsList;
+        this.currUsername = currentUsername;
     }
 
     public void addFriend(Friends friend) {
@@ -27,7 +30,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.friend_item, parent, true);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.friend_item, parent, false);
 
         return new ViewHolder(view);
     }
@@ -37,6 +40,14 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         Friends friends = friendsList.get(position);
         holder.usernameTxtView.setText(friends.getUsername());
         holder.avatarImgView.setImageResource(friends.getAvatarImg());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FriendsFragmentDirections.ActionFriendsFragmentToUsersProfileFragment action = FriendsFragmentDirections.actionFriendsFragmentToUsersProfileFragment(holder.usernameTxtView.getText().toString(), currUsername);
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
     }
 
     @Override

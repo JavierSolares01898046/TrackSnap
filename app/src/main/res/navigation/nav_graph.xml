@@ -75,6 +75,9 @@
         <argument
             android:name="username"
             app:argType="string" />
+        <action
+            android:id="@+id/action_friendsFragment_to_usersProfileFragment"
+            app:destination="@id/usersProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/moviesWatchedFragment"
