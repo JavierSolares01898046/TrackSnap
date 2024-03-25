@@ -98,6 +98,10 @@
         <action
             android:id="@+id/action_reviewsFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_reviewsFragment_to_moviesWatchedFragment"
+            app:destination="@id/moviesWatchedFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/watchlistFragment"
