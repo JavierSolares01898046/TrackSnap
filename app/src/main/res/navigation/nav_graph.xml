@@ -159,5 +159,10 @@
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.example.tracksnap.MovieDetailsFragment"
-        android:label="MovieDetailFragment" />
-</navigation>
+        android:label="MovieDetailFragment" >
+        <argument
+            android:name="username"
+            app:argType="string" />
+    </fragment>
+
+    </navigation>

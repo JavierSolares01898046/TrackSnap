@@ -54,7 +54,7 @@
         android:id="@+id/profilePic"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginBottom="516dp"
+        android:layout_marginBottom="476dp"
         app:layout_constraintBottom_toBottomOf="@+id/bioBorder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

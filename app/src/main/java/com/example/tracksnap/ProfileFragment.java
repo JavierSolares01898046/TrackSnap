@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -155,25 +156,9 @@ public class ProfileFragment extends Fragment {
 
         loadProfilePictureFromSharedPreferences();
 
+
         return view;
     }
-
-
-//    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//        if (snapshot.exists()) {
-//            HelperClass user = snapshot.getValue(HelperClass.class);
-//            if (user != null) {
-//                bioTxtView.setText(user.getBio());
-//                String profilePicUrl = user.getProfilePicUrl();
-//                if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
-//                    // Load the profile picture into the ImageView using Glide or Picasso
-//                    Glide.with(requireContext())
-//                            .load(profilePicUrl)
-//                            .into(profile_pic);
-//                }
-//            }
-//        }
-//    }
 
 
     private void setupProfilePictureListener() {
@@ -230,4 +215,7 @@ public class ProfileFragment extends Fragment {
             setupProfilePictureListener();
         }
     }
+
+
+
 }

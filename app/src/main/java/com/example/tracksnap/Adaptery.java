@@ -21,10 +21,12 @@ public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder>{
 
     private Context mContext;
     private List<MovieModelClass> mData;
+    private String mUsername;
 
-    public Adaptery(Context mContext, List<MovieModelClass> mData) {
+    public Adaptery(Context mContext, List<MovieModelClass> mData, String username) {
         this.mContext = mContext;
         this.mData = mData;
+        this.mUsername = username;
     }
 
     @NonNull
@@ -71,7 +73,11 @@ public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder>{
             bundle.putString("releaseDate", movie.getReleaseDate());
             bundle.putDouble("voteAverage", movie.getVoteAverage());
             bundle.putString("image", movie.getImage());
+            bundle.putString("username", movie.getUsername());
             bundle.putStringArrayList("genreList", new ArrayList<>(movie.getGenreList()));
+
+//            MovieHomeFragmentDirections.ActionMovieHomeFragmentToMovieDetailFragment action = MovieHomeFragmentDirections.actionMovieHomeFragmentToMovieDetailFragment(username);
+//            Navigation.findNavController(view).navigate(action);
 
             Navigation.findNavController(view).navigate(R.id.action_movieHomeFragment_to_movieDetailFragment, bundle);
         });
