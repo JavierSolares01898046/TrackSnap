@@ -98,7 +98,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Log out the user
-                FirebaseAuth.getInstance().signOut();
+//                FirebaseAuth.getInstance().signOut();
                 // Navigate back to the home fragment
                 Navigation.findNavController(v).navigate(R.id.action_settingsFragment_to_homeFragment);
                 // Finish the current activity (optional)
