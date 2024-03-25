@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:height="150dp"
-        android:text="Are you gonna Robbie Dobie Lobie rokie Tokie my shts??"
+        android:text="Welcome to TrackSnap! This app is dedicated to you by Group 7. Thank you, and have a wonderful time on the app!"
         android:textColor="@color/w"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
