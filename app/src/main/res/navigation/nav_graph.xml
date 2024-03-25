@@ -88,7 +88,17 @@
         android:id="@+id/reviewsFragment"
         android:name="com.example.tracksnap.ReviewsFragment"
         android:label="fragment_reviews"
-        tools:layout="@layout/fragment_reviews" />
+        tools:layout="@layout/fragment_reviews" >
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_reviewsFragment_to_movieHomeFragment"
+            app:destination="@id/movieHomeFragment" />
+        <action
+            android:id="@+id/action_reviewsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/watchlistFragment"
         android:name="com.example.tracksnap.WatchlistFragment"
