@@ -11,6 +11,8 @@ public class MovieModelClass {
     private String releaseDate;
     private double voteAverage;
     private String image;
+    private String username;
+
     private List<String> genreList;
 
     public MovieModelClass(String id, String title, String overview, String releaseDate, double voteAverage, String image, List<String> genreList) {
@@ -21,6 +23,7 @@ public class MovieModelClass {
         this.voteAverage = voteAverage;
         this.image = image;
         this.genreList = genreList;
+        this.username = username;
     }
 
     public MovieModelClass() {
@@ -37,6 +40,10 @@ public class MovieModelClass {
     public String getTitle() {
         return title;
     }
+    public void setUsername(String user_name) {
+        this.username = user_name;
+    }
+    public String getUsername() { return username; }
 
     public void setTitle(String title) {
         this.title = title;

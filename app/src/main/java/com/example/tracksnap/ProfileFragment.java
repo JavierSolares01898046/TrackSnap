@@ -1,16 +1,20 @@
 package com.example.tracksnap;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,11 +23,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,7 +48,7 @@ public class ProfileFragment extends Fragment {
     private Button reviewsBtn;
     private Button friendsBtn;
     private Button homemovie_btn;
-
+    private ImageView profile_pic;
     private String username = "";
     private String otherUsername = "";
     DatabaseReference databaseReference;
@@ -64,6 +71,10 @@ public class ProfileFragment extends Fragment {
         username = ProfileFragmentArgs.fromBundle(requireArguments()).getUsername();
         Toast.makeText(requireContext(), "Current Username: " + username, Toast.LENGTH_SHORT).show();
 
+        profile_pic = view.findViewById(R.id.profilePic);
+
+
+
 //        if (otherUsername.equals(username)) {
 //            // Enable the Friends button
 //            friendsBtn.setEnabled(true);
@@ -71,6 +82,7 @@ public class ProfileFragment extends Fragment {
 //            // Disable the Friends button
 //            friendsBtn.setEnabled(false);
 //        }
+
 
         // Displays username at the top of the profile page
         usernameTxtView.setText(username);
@@ -113,7 +125,9 @@ public class ProfileFragment extends Fragment {
         reviewsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_reviewsFragment);
+                ProfileFragmentDirections.ActionProfileFragmentToReviewsFragment action = ProfileFragmentDirections.actionProfileFragmentToReviewsFragment(username);
+                Navigation.findNavController(view).navigate(action);
+//                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_reviewsFragment);
             }
         });
 
@@ -136,15 +150,74 @@ public class ProfileFragment extends Fragment {
         setting_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_settingsFragment);
+                ProfileFragmentDirections.ActionProfileFragmentToSettingsFragment action = ProfileFragmentDirections.actionProfileFragmentToSettingsFragment(username);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
 
-
+        loadProfilePictureFromSharedPreferences();
 
 
         return view;
     }
+
+
+    private void setupProfilePictureListener() {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(username).child("profilePictures");
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String profilePicUrl = dataSnapshot.getValue(String.class);
+                    if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
+                        // Save to SharedPreferences
+                        saveProfilePictureUrl(profilePicUrl);
+
+                        // Load the profile picture into the ImageView
+                        Glide.with(requireContext())
+                                .load(profilePicUrl)
+                                .circleCrop()
+                                .into(profile_pic);
+                    }
+                    else {
+                        Glide.with(requireContext())
+                                .load(R.drawable.defaultuser) // Assuming default user image is stored in resources
+                                .circleCrop()
+                                .into(profile_pic);
+                    }
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("ProfileFragment", "Failed to load profile picture.", databaseError.toException());
+            }
+        });
+    }
+
+    private void saveProfilePictureUrl(String url) {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("profilePictureUrl", url);
+        editor.apply();
+    }
+
+    private void loadProfilePictureFromSharedPreferences() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE);
+        String profilePicUrl = sharedPreferences.getString("profilePictureUrl", "");
+        if (!profilePicUrl.isEmpty()) {
+            Glide.with(requireContext())
+                    .load(profilePicUrl)
+                    .circleCrop()
+                    .into(profile_pic);
+        } else {
+            // If the URL is not found in SharedPreferences, setup the Firebase listener to fetch it
+            setupProfilePictureListener();
+        }
+    }
+
+
 
 }

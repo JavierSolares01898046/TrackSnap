@@ -1,6 +1,7 @@
 package com.example.tracksnap;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,20 +9,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder>{
 
     private Context mContext;
     private List<MovieModelClass> mData;
+    private String mUsername;
 
-    public Adaptery(Context mContext, List<MovieModelClass> mData) {
+    public Adaptery(Context mContext, List<MovieModelClass> mData, String username) {
         this.mContext = mContext;
         this.mData = mData;
+        this.mUsername = username;
     }
 
     @NonNull
@@ -38,6 +43,7 @@ public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        MovieModelClass movie = mData.get(position);
         holder.title.setText(mData.get(position).getTitle());
         holder.overview.setText(mData.get(position).getOverview());
         holder.releaseDate.setText(mData.get(position).getReleaseDate());
@@ -57,6 +63,24 @@ public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder>{
         Glide.with(mContext)
                 .load(mData.get(position).getImage())
                 .into(holder.img);
+
+        holder.img.setOnClickListener(view -> {
+            // Open MovieDetailFragment and pass movie details
+            Bundle bundle = new Bundle();
+            bundle.putString("id", movie.getId());
+            bundle.putString("title", movie.getTitle());
+            bundle.putString("overview", movie.getOverview());
+            bundle.putString("releaseDate", movie.getReleaseDate());
+            bundle.putDouble("voteAverage", movie.getVoteAverage());
+            bundle.putString("image", movie.getImage());
+            bundle.putString("username", movie.getUsername());
+            bundle.putStringArrayList("genreList", new ArrayList<>(movie.getGenreList()));
+
+//            MovieHomeFragmentDirections.ActionMovieHomeFragmentToMovieDetailFragment action = MovieHomeFragmentDirections.actionMovieHomeFragmentToMovieDetailFragment(username);
+//            Navigation.findNavController(view).navigate(action);
+
+            Navigation.findNavController(view).navigate(R.id.action_movieHomeFragment_to_movieDetailFragment, bundle);
+        });
 
     }
 

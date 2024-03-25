@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,6 +65,7 @@ public class MovieHomeFragment extends Fragment {
 
 
         username = MovieHomeFragmentArgs.fromBundle(requireArguments()).getUsername();
+
 //        searchUserData(username);
 //        Toast.makeText(getContext(), "Username: " + username, Toast.LENGTH_SHORT).show();
 
@@ -175,7 +177,6 @@ public class MovieHomeFragment extends Fragment {
                         model.setReleaseDate(movieObject.getString("release_date"));
                         model.setVoteAverage(movieObject.getDouble("vote_average"));
                         model.setImage("https://image.tmdb.org/t/p/w500" + movieObject.getString("poster_path"));
-
                         // Get genre IDs from the JSON object
                         JSONArray genreIdsArray = movieObject.getJSONArray("genre_ids");
                         List<String> genreList = new ArrayList<>();
@@ -186,6 +187,7 @@ public class MovieHomeFragment extends Fragment {
                                 genreList.add(genre);
                             }
                         }
+                        model.setUsername(username);
                         model.setGenreList(genreList);
 
                         movieList.add(model);
@@ -358,7 +360,7 @@ public class MovieHomeFragment extends Fragment {
     }
 
     private void PutDataIntoRecyclerView(List<MovieModelClass> movieList){
-        Adaptery adaptery = new Adaptery(requireContext(), movieList);
+        Adaptery adaptery = new Adaptery(requireContext(), movieList, username);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
 
