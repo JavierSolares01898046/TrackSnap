@@ -1,0 +1,10 @@
+<resources>
+    <!-- Other styles -->
+
+    <!-- Style for Bottom Navigation Toolbar -->
+    <style name="AppTheme.BottomNav" parent="Widget.Design.BottomNavigationView">
+        <item name="android:background">#3F51B5</item>
+        <item name="itemTextColor">#FFFFFF</item>
+        <item name="itemIconTint">#FFFFFF</item>
+    </style>
+</resources>
