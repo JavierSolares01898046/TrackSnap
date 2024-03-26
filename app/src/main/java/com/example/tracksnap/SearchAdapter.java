@@ -1,15 +1,12 @@
 package com.example.tracksnap;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -21,9 +18,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     private Context context;
     private List<Friends> users;
     private String currUsername = "";
-    ImageView userAvatar;
-    TextView usernameTxt;
-    RelativeLayout topRel;
 
     public SearchAdapter(Context context, List<Friends> users, String currentUsername) {
         this.context = context;

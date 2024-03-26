@@ -5,20 +5,11 @@ import android.os.Bundle;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,10 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,7 +38,6 @@ public class ProfileFragment extends Fragment {
     private Button homemovie_btn;
     private ImageView profile_pic;
     private String username = "";
-    private String otherUsername = "";
     DatabaseReference databaseReference;
 
     @Override
@@ -72,17 +59,6 @@ public class ProfileFragment extends Fragment {
         Toast.makeText(requireContext(), "Current Username: " + username, Toast.LENGTH_SHORT).show();
 
         profile_pic = view.findViewById(R.id.profilePic);
-
-
-
-//        if (otherUsername.equals(username)) {
-//            // Enable the Friends button
-//            friendsBtn.setEnabled(true);
-//        } else {
-//            // Disable the Friends button
-//            friendsBtn.setEnabled(false);
-//        }
-
 
         // Displays username at the top of the profile page
         usernameTxtView.setText(username);
@@ -127,7 +103,6 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 ProfileFragmentDirections.ActionProfileFragmentToReviewsFragment action = ProfileFragmentDirections.actionProfileFragmentToReviewsFragment(username);
                 Navigation.findNavController(view).navigate(action);
-//                Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_reviewsFragment);
             }
         });
 
@@ -217,7 +192,5 @@ public class ProfileFragment extends Fragment {
             setupProfilePictureListener();
         }
     }
-
-
 
 }

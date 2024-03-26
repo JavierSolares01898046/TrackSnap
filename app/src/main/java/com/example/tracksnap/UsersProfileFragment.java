@@ -9,13 +9,11 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,15 +27,12 @@ public class UsersProfileFragment extends Fragment {
     private TextView usernameTxtView;
     private TextView bioTxtView;
     private Button addBtn;
-    private Button blockBtn;
     private Button declineBtn;
     private String otherUsername = "";
     private String currUsername = "";
     private String requestId = "";
     private String addBtnTxt = "";
     private String declineBtnTxt = "";
-    private Boolean friendStatus = false;
-    FirebaseDatabase database;
     DatabaseReference databaseReference;
     DatabaseReference friendRequestRef;
 
@@ -102,9 +97,6 @@ public class UsersProfileFragment extends Fragment {
                 friendRequestRef.child(requestId).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        if (!snapshot.exists()) {
-//                            Toast.makeText(requireContext(), "snapshot CLICKED", Toast.LENGTH_SHORT).show();
-//                            String status = snapshot.child("status").getValue(String.class);
                             if (addBtnTxt.equals("Add")) {
                                 Toast.makeText(requireContext(), "ADD BTN CLICKED", Toast.LENGTH_SHORT).show();
                                 friendRequestRef.child(requestId).child("status").setValue("pending");
@@ -113,8 +105,6 @@ public class UsersProfileFragment extends Fragment {
                                 friendRequestRef.child(requestId).child("status").setValue("friends");
                             }
                             setAddButtonStatus(currUsername, otherUsername);
-                            Log.d("FirebaseData", "SECOND CALL OF FUNCTION");
-//                        }
                     }
 
                     @Override
@@ -122,8 +112,6 @@ public class UsersProfileFragment extends Fragment {
                         // Handle onCancelled
                     }
                 });
-
-                Toast.makeText(requireContext(), "BUTTON CLICKED", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -135,7 +123,6 @@ public class UsersProfileFragment extends Fragment {
                 friendRequestRef.child(requestId).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        if (snapshot.exists()) {
                         if (declineBtnTxt.equals("Decline") || declineBtnTxt.equals("Unsend")) {
                             friendRequestRef.child(requestId).child("status").setValue("none");
                         } else if (declineBtnTxt.equals("Remove")) {
@@ -143,7 +130,6 @@ public class UsersProfileFragment extends Fragment {
                             showDeclinePopup(otherUsername);
                         }
                         setAddButtonStatus(currUsername, otherUsername);
-//                        }
                     }
 
                     @Override
@@ -151,23 +137,18 @@ public class UsersProfileFragment extends Fragment {
                         // Handle onCancelled
                     }
                 });
-                Toast.makeText(requireContext(), "BUTTON CLICKED", Toast.LENGTH_SHORT).show();
             }
         });
 
         // This function will set the correct text of the addBtn
         setAddButtonStatus(currUsername, otherUsername);
-        Log.d("FirebaseData", "FIRST CALL OF FUNCTION");
-
 
         return view;
     }
 
     private void sendingFriendRequest(String userSender, String userReceiver, String requestId) {
-//        friendRequestRef = FirebaseDatabase.getInstance().getReference("friendRequests").child(requestId);
         friendRequestRef.child(requestId).child("sender").setValue(userSender);
         friendRequestRef.child(requestId).child("receiver").setValue(userReceiver);
-//        friendRequestRef.child("status").setValue("pending");
     }
 
 
@@ -191,9 +172,6 @@ public class UsersProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d("FirebaseData", "RequestId: " + requestId);
-
-
-
 
                 if (snapshot.exists()) {
                     String senderValue = snapshot.child("sender").getValue(String.class);
@@ -226,11 +204,6 @@ public class UsersProfileFragment extends Fragment {
                             declineBtn.setText("Decline");
                             declineBtn.setTextSize(16);
                             declineBtn.setVisibility(View.VISIBLE);
-
-//                            // Add the other user to the "Pending List" in FriendsFragment
-//                            Friends friend = new Friends(otherUsername, R.drawable.defaultuser); // Customize the avatar as needed
-//                            FriendsAdapter adapter = new FriendsAdapter(friendsList); // Assuming friendsList is accessible here
-//                            adapter.addFriend(friend);
                         }
                     } else if (status.equals("friends")) {
                         addBtn.setText("Friends");
@@ -273,7 +246,6 @@ public class UsersProfileFragment extends Fragment {
                             setAddButtonStatus(currUsername, otherUsername);
                             Toast.makeText(requireContext(), "User removed as a friend", Toast.LENGTH_SHORT).show();
                         } else {
-                            // Handle error if setValue operation fails
                             Toast.makeText(requireContext(), "Error removing user as a friend", Toast.LENGTH_SHORT).show();
                         }
                     }

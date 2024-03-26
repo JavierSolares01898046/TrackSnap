@@ -25,8 +25,6 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.List;
-
 
 public class SignupFragment extends Fragment {
     private ImageButton infoBtn;
@@ -35,9 +33,6 @@ public class SignupFragment extends Fragment {
     private CheckBox[] signupRating = new CheckBox[5];
     private CheckBox[] signupDuration = new CheckBox[6];
     private Button signupBtn;
-    private TextView genresTxtView;
-    private TextView ratingsTxtView;
-    private TextView durationsTxtView;
     FirebaseDatabase database;
     DatabaseReference reference;
     private MediaPlayer failSound;
@@ -63,9 +58,6 @@ public class SignupFragment extends Fragment {
         signupPassword = view.findViewById(R.id.signup_password_edit);
         signupBio = view.findViewById(R.id.bio_edit);
         signupBtn = view.findViewById(R.id.signup_complete_btn);
-        genresTxtView = view.findViewById(R.id.genres_txtview);
-        ratingsTxtView = view.findViewById(R.id.movierating_txtview);
-        durationsTxtView = view.findViewById(R.id.movieduration_txtview);
 
         failSound = MediaPlayer.create(getContext(), R.raw.casualsound);
         validSound = MediaPlayer.create(getContext(), R.raw.beep);
@@ -108,9 +100,6 @@ public class SignupFragment extends Fragment {
             public void onClick(View view) {
                 database = FirebaseDatabase.getInstance();
                 reference = database.getReference("users");
-
-//                FirebaseDatabase database2 = FirebaseDatabase.getInstance();
-//                DatabaseReference reference2 = database2.getReference("friendRequests");
 
                 // Removing whitespaces at the start and end of the string for each of the following
                 String email = signupEmail.getText().toString().trim();
@@ -230,7 +219,7 @@ public class SignupFragment extends Fragment {
         Animation animation3 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
         Pinkcircle.startAnimation(animation3);
 
-        // Animation for moving circle2
+        // Animation for moving circle4
         Animation animation4 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
         Purplecircle.startAnimation(animation4);
 

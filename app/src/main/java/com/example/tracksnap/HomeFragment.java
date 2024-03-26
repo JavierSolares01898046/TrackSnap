@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
         Animation animation3 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
         Pinkcircle.startAnimation(animation3);
 
-        // Animation for moving circle2
+        // Animation for moving circle4
         Animation animation4 = AnimationUtils.loadAnimation(requireActivity(), R.anim.movecircle);
         Purplecircle.startAnimation(animation4);
 

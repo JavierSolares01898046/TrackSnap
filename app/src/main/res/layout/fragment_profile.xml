@@ -33,8 +33,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!--  Guideline to split the screen into two halves  -->
-
     <TextView
         android:id="@+id/username_txtview"
         android:layout_width="wrap_content"
@@ -57,7 +55,6 @@
         android:layout_marginBottom="476dp"
         app:layout_constraintBottom_toBottomOf="@+id/bioBorder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
@@ -92,8 +89,6 @@
         android:background="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_bio_txtview" />
-
-    <!--  The second half of the screen  -->
 
 
     <TextView

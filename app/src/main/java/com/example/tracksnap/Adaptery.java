@@ -76,8 +76,6 @@ public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder>{
             bundle.putString("username", movie.getUsername());
             bundle.putStringArrayList("genreList", new ArrayList<>(movie.getGenreList()));
 
-//            MovieHomeFragmentDirections.ActionMovieHomeFragmentToMovieDetailFragment action = MovieHomeFragmentDirections.actionMovieHomeFragmentToMovieDetailFragment(username);
-//            Navigation.findNavController(view).navigate(action);
 
             Navigation.findNavController(view).navigate(R.id.action_movieHomeFragment_to_movieDetailFragment, bundle);
         });

@@ -18,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <android.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
@@ -27,20 +26,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/back_arrow_imgBtn"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-<!--    <EditText-->
-<!--        android:id="@+id/searchbar_edtTxt"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:hint="@string/searchbar_txt"-->
-<!--        android:inputType="text"-->
-<!--        android:maxLines="1"-->
-<!--        android:singleLine="true"-->
-<!--        android:imeOptions="actionSearch"-->
-<!--        android:drawableLeft="@drawable/ic_search_24"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@id/back_arrow_imgBtn"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recyclerview"

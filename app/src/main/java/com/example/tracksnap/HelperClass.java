@@ -1,13 +1,7 @@
 package com.example.tracksnap;
 
-import java.util.List;
-
 public class HelperClass {
     String email, username, username_lowercase, password, bio, genre, rating, duration, profilePicUrl;
-
-//    List<String> genre;
-//    List<String> rating;
-//    List<String> duration;
 
     public HelperClass() {
     }

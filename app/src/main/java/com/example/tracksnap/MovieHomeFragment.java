@@ -2,8 +2,6 @@ package com.example.tracksnap;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.service.autofill.UserData;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,11 +24,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +34,7 @@ import okhttp3.Response;
 
 public class MovieHomeFragment extends Fragment {
     private static final String API_URL = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
-    // Replace this token with your authorization token
+    // Replace this token with the authorization token
     //
     private static final String AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmI0MTBjOWY3YzY1MjQzNzc2ODQwMWYxZTM5N2FhMCIsInN1YiI6IjY1Y2ZhN2U4NjBjNzUxMDE0NzY4YmRiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2tABWOxcabMK_KtLyW53vH-iIKJ5-prNoof3towpcfs";
 
@@ -279,7 +267,7 @@ public class MovieHomeFragment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle cancellation or error
+
             }
         });
     }

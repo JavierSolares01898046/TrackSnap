@@ -1,8 +1,5 @@
 package com.example.tracksnap;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,17 +8,11 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -31,20 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class FriendsFragment extends Fragment {
-//    private EditText searchbarEdtTxt;
-//    private TextView friendslistTextView;
-//    private RecyclerView friendsRecyclerView;
-//    private TextView pendinglistTextView;
-//    private RecyclerView pendingRecyclerView;
-//    private LinearLayout searchresult_layout;
-//    private DatabaseReference reference;
-//    private FriendsAdapter pendingAdapter;
     private List<Friends> pendingList = new ArrayList<>();
     private List<Friends> friendsList = new ArrayList<>();
     private String username = "";
@@ -79,7 +61,6 @@ public class FriendsFragment extends Fragment {
             public void onClick(View view) {
                 FriendsFragmentDirections.ActionFriendsFragmentToSearchFragment action = FriendsFragmentDirections.actionFriendsFragmentToSearchFragment(username);
                 Navigation.findNavController(view).navigate(action);
-//                Navigation.findNavController(view).navigate(R.id.action_friendsFragment_to_searchFragment);
             }
         });
 
@@ -96,7 +77,7 @@ public class FriendsFragment extends Fragment {
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(requireContext());
         friendsRecyclerView.setLayoutManager(layoutManager1);
 
-        // Fetch pending requests from Firebase and update UI
+        // Fetch friends from Firebase and update UI
         fetchFriends();
         ////////////////// FRIENDS LIST RECYCLERVIEW //////////////////
 
@@ -116,14 +97,11 @@ public class FriendsFragment extends Fragment {
         ////////////////// PENDING LIST RECYCLERVIEW //////////////////
 
 
-
-
         return view;
     }
 
     private void fetchPendingRequests() {
-        Log.d("FirebaseData", "FIRST CALL OF FUNCTION");
-        // Assuming 'databaseReference' points to your 'friendRequests' node
+        // Goes through all of the values with 'pending' as the status
         Query pendingRequestsQuery = databaseReference.orderByChild("status").equalTo("pending");
         pendingRequestsQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -147,26 +125,21 @@ public class FriendsFragment extends Fragment {
                         // Create a new Friends object and add it to the pendingList
                         Friends friend = new Friends(pendingFriendName, R.drawable.defaultuser);
                         pendingList.add(friend);
-                        Log.d("FriendsFragment", "Pending List Size: " + pendingList.size());
                         pendingAdapter.notifyDataSetChanged();
                     }
                 }
-
-                // Notify the adapter or update UI as needed
-                // adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle potential errors
-//                Log.e(TAG, "Error fetching pending requests: " + databaseError.getMessage());
+
             }
         });
     }
 
 
     private void fetchFriends() {
-        // Assuming 'databaseReference' points to your 'friendRequests' node
+        // Goes through all of the values with 'friends' as the status
         Query friendsQuery = databaseReference.orderByChild("status").equalTo("friends");
         friendsQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -198,8 +171,7 @@ public class FriendsFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle potential errors
-                Log.e("FriendsFragment", "Error fetching friends: " + databaseError.getMessage());
+
             }
         });
     }
